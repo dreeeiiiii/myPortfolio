@@ -1,95 +1,84 @@
-"use client"
+'use client'
+
 import React, { useState } from 'react'
-import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBarsStaggered } from '@fortawesome/free-solid-svg-icons'
+import { faBarsStaggered, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
+
+const navItems = [
+  { label: 'HOME', href: '#home' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'PROJECTS', href: '#projects' },
+  { label: 'CONTACT', href: '#contact' },
+  { label: 'RESUME', href: '#' }
+]
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
-
-  const toggle = () => {
-    setOpen(prev => !prev)
-  }
-
-  const navItems = ['HOME', 'ABOUT', 'PROJECTS', 'CONTACT', 'RESUME']
+  const toggle = () => setOpen(prev => !prev)
 
   return (
-    <nav className="flex bg-stone-800 h-20 rounded-bl-2xl w-full">
-      <div className="flex justify-center p-2">
-        <Image
-          src="/assets/VAM.svg"
-          alt="VAM Logo"
-          width={80}
-          height={50}
-          priority
-          className="rounded-l-3xl bg-white p-2 shadow-md object-contain"
-        />
-      </div>
+    <nav className="w-full bg-emerald-950 shadow-md fixed top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Brand */}
+        <p className="text-white font-bold text-2xl tracking-tight">VAMM</p>
 
-      <div className="w-full relative">
-        
+        {/* Desktop Nav */}
+        <div className="hidden md:flex space-x-6">
+          {navItems.map((item, index) => (
+            <a
+              key={index}
+              href={item.href}
+              className="text-white hover:text-emerald-400 transition duration-200 font-semibold px-4 py-2 hover:bg-emerald-800 rounded-xl"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile Hamburger */}
         <button
           onClick={toggle}
-          className="md:hidden inline-block absolute hover:border hover:border-white bg-transparent text-3xl text-white rounded-2xl p-3 right-3 top-3"
+          className="md:hidden text-white text-2xl focus:outline-none"
           aria-label="Toggle menu"
         >
           <FontAwesomeIcon icon={faBarsStaggered} />
         </button>
-
-      
-        <AnimatePresence>
-          {open && (
-            <motion.ul
-              className="
-                opacity-100 pointer-events-auto font-figtree text-white text-xl
-                bg-gradient-to-b from-stone-950 to-emerald-800 flex flex-col items-center
-                h-screen space-y-10 justify-center w-screen rounded-bl-3xl z-50 absolute top-0 left-0
-              "
-              initial={{ x: 200, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 200, opacity: 0 }}
-              transition={{
-                default: { type: "spring", stiffness: 120, duration: 0.8, damping: 20 },
-                exit: { ease: "easeIn", delay: 0 },
-              }}
-            >
-              <button
-                onClick={toggle}
-                className="bg-transparent text-white rounded-full p-3 absolute left-5 top-3 hover:font-extrabold"
-                aria-label="Close menu"
-              >
-                x
-              </button>
-
-              {navItems.map((item, index) => (
-                <Link
-                  key={index}
-                  href="#"
-                  className="inline-block text-white font-semibold hover:text-emerald-300 transition ease-in-out duration-150 hover:translate-x-1 will-change-transform"
-                  onClick={toggle} 
-                >
-                  {item}
-                </Link>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-
-       
-        <div className="hidden md:flex justify-end items-center flex-row text-white font-semibold gap-7 w-full h-full pr-6">
-          {navItems.map((item, index) => (
-            <Link
-              key={index}
-              href="#"
-              className="bg-white text-black px-4 py-2 rounded-bl-4xl rounded-tr-sm font-semibold transition hover:ease-in-out duration-150 hover:translate-y-1 transform"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 bg-emerald-950 bg-opacity-95 backdrop-blur-sm flex flex-col justify-center items-center space-y-10 text-white z-50"
+            initial={{ x: '100%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={toggle}
+              className="absolute top-5 right-6 text-3xl text-white hover:text-emerald-400 transition"
+              aria-label="Close menu"
+            >
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+
+            {/* Menu Items */}
+            {navItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                onClick={toggle}
+                className="text-2xl font-semibold hover:text-emerald-300 transition transform hover:scale-105"
+              >
+                {item.label}
+              </a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   )
 }
