@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#10B981" rx="12" ry="12" />
+
+  <!-- Text -->
+  <text
+    x="32"
+    y="42"
+    font-size="28"
+    text-anchor="middle"
+    fill="white"
+    font-family="Figtree, sans-serif"
+    font-weight="700"
+  >
+    VAM
+  </text>
+</svg>
