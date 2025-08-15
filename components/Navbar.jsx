@@ -1,21 +1,30 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBarsStaggered, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBarsStaggered, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { label: 'HOME', href: '#home' },
-  { label: 'ABOUT', href: '#about' },
-  { label: 'PROJECTS', href: '#projects' },
-  { label: 'CONTACT', href: '#contact' },
-  { label: 'RESUME', href: '#' }
-]
+  { label: "HOME", href: "#hero" },
+  { label: "ABOUT", href: "#about" },
+  { label: "PROJECTS", href: "#projects" },
+  { label: "CONTACT", href: "#contact" },
+];
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false)
-  const toggle = () => setOpen(prev => !prev)
+  const [open, setOpen] = useState(false);
+  const toggle = () => setOpen((prev) => !prev);
+
+  // Smooth scroll handler
+  const handleScroll = (e, href) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setOpen(false); // close mobile menu after click
+  };
 
   return (
     <nav className="w-full bg-emerald-950 shadow-md fixed top-0 left-0 z-50">
@@ -29,6 +38,7 @@ const Navbar = () => {
             <a
               key={index}
               href={item.href}
+              onClick={(e) => handleScroll(e, item.href)}
               className="text-white hover:text-emerald-400 transition duration-200 font-semibold px-4 py-2 hover:bg-emerald-800 rounded-xl"
             >
               {item.label}
@@ -51,10 +61,10 @@ const Navbar = () => {
         {open && (
           <motion.div
             className="fixed inset-0 bg-emerald-950 bg-opacity-95 backdrop-blur-sm flex flex-col justify-center items-center space-y-10 text-white z-50"
-            initial={{ x: '100%', opacity: 0 }}
+            initial={{ x: "100%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '100%', opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+            exit={{ x: "100%", opacity: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
           >
             {/* Close Button */}
             <button
@@ -70,7 +80,7 @@ const Navbar = () => {
               <a
                 key={index}
                 href={item.href}
-                onClick={toggle}
+                onClick={(e) => handleScroll(e, item.href)}
                 className="text-2xl font-semibold hover:text-emerald-300 transition transform hover:scale-105"
               >
                 {item.label}
@@ -80,7 +90,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
