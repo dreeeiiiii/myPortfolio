@@ -13,7 +13,9 @@ const socialLinks = [
 
 export default function ContactSection() {
   return (
-    <section className="relative bg-gradient-to-b from-emerald-950 to-emerald-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section 
+      id='contact'
+      className="relative bg-gradient-to-b from-emerald-950 to-emerald-900 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Floating animated blobs */}
       <motion.div
         className="absolute w-72 h-72 bg-emerald-700/20 rounded-full blur-3xl"
