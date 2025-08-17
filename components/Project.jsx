@@ -49,6 +49,26 @@ const ongoingProjects = [
     techStack: ['PostgreSQL', 'Express', 'React', 'Node.js', 'TypeScript'],
     techDescription: 'Full PERN stack for backend, frontend, and database management.',
   },
+  {
+    title: 'Menu App',
+    description: (
+      <>
+        A restaurant menu management app with categories and item details. Built with the PERN stack.{' '}
+        <a
+          href="https://github.com/dreeeiiiii/menuapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          GitHub
+        </a>
+      </>
+    ),
+    image: '/projects/menu-app.png',
+    mainLink: 'https://github.com/dreeeiiiii/menuapp',
+    techStack: ['PostgreSQL', 'Express', 'React', 'Node.js', 'TypeScript'],
+    techDescription: 'Backend in Node.js & Express, PostgreSQL for data storage, React with TypeScript for the frontend.',
+  },
 ]
 
 export default function ProjectsSection() {
