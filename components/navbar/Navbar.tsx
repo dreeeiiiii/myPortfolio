@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 
 interface NavItem {
   label: string;
@@ -18,14 +18,9 @@ const navItems: NavItem[] = [
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>("HOME");
-  const { scrollY } = useScroll();
+  useScroll();
   
   // Transform navbar background on scroll
-  const navBackground = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(5, 46, 22, 0)", "rgba(5, 46, 22, 0.8)"]
-  );
 
   const toggle = (): void => setOpen((prev) => !prev);
 
