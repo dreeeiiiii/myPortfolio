@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { motion, AnimatePresence, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 interface NavItem {
   label: string;

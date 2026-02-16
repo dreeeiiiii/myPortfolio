@@ -34,7 +34,7 @@ export default function About(): JSX.Element {
   return (
     <section
       id="about"
-      className="relative min-h-screen px-6 py-20 sm:py-32 bg-gradient-to-b from-emerald-900 via-teal-950 to-emerald-950 text-white font-[Poppins] overflow-hidden"
+      className="relative min-h-screen px-6 py-20 sm:py-32 bg-linear-to-b from-emerald-900 via-teal-950 to-emerald-950 text-white font-[Poppins] overflow-hidden"
     >
       {/* Animated Grid Background */}
       <div className="absolute inset-0 z-0 opacity-5">

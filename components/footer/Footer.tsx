@@ -1,6 +1,6 @@
 'use client'
 
-import React, { type FC } from 'react'
+import { type FC } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
