@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/700.css";
 import type { JSX } from "react";
+import profilePic from '../../public/4.png';
 
 interface Stat {
   value: string;
@@ -99,7 +100,7 @@ export default function Hero(): JSX.Element {
         <motion.div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-emerald-400 to-cyan-400 rounded-full opacity-75" animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
         <div className="relative rounded-full shadow-2xl overflow-hidden w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-emerald-950">
           <motion.div className="w-full h-full scale-110" whileHover={{ scale: 1.15 }} transition={{ duration: 0.3 }}>
-            <img src="public/4.png" alt="Andrei's profile" className="object-cover w-full h-full" />
+            <img src={profilePic} alt="Andrei's profile"className="object-cover w-full h-full" />
           </motion.div>
           <motion.div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300 rounded-full" />
         </div>
