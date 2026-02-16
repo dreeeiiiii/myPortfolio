@@ -61,7 +61,7 @@ function App() {
       )}
 
       <CursorEffect />
-      <Navbar />
+      <Navbar/>
       <Hero />
       <About />
       <ProjectsSection />

@@ -65,99 +65,99 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* Transparent Navbar */}
-      <motion.nav
-        className="w-full fixed top-0 left-0 z-50"
+    <motion.nav
+    className="w-full sticky top-0 z-50 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 border-b border-emerald-800/40"
+    >
+    <div className="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      {/* Animated Brand */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="relative group cursor-pointer"
       >
-        <motion.div 
-          className="absolute inset-0 backdrop-blur-md border-b border-emerald-500/10"
-          style={{ backgroundColor: navBackground }}
-        />
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Animated Brand */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="relative group cursor-pointer"
-          >
-            <motion.p 
-              className="text-white font-bold text-2xl tracking-tight relative z-10"
-              whileHover={{ scale: 1.05 }}
-            >
-              VAMM
-            </motion.p>
-            <motion.div
-              className="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-lg opacity-0 group-hover:opacity-20 blur-xl transition-opacity"
-              initial={{ scale: 0.8 }}
-              whileHover={{ scale: 1 }}
-            />
-          </motion.div>
+        <motion.p
+          className="text-white font-bold text-2xl tracking-tight relative z-10"
+          whileHover={{ scale: 1.05 }}
+        >
+          VAMM
+        </motion.p>
 
-          {/* Desktop Nav with Pill Indicator */}
-          <div className="hidden md:flex items-center gap-2 bg-emerald-900/20 backdrop-blur-md rounded-full px-2 py-2 border border-emerald-500/20">
-            {navItems.map((item: NavItem, index: number) => (
-              <motion.a
-                key={index}
-                href={item.href}
-                onClick={(e) => handleScroll(e, item.href)}
-                className="relative px-6 py-2.5 text-sm font-semibold transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {/* Active indicator */}
-                {activeSection === item.label && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                
-                <span className={`relative z-10 ${
-                  activeSection === item.label 
-                    ? "text-white" 
-                    : "text-emerald-200 hover:text-white"
-                }`}>
-                  {item.label}
-                </span>
-
-                {/* Hover glow */}
-                <motion.div
-                  className="absolute inset-0 bg-emerald-400/20 rounded-full opacity-0 blur-md"
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Futuristic Mobile Hamburger */}
-          <motion.button
-            onClick={toggle}
-            className="md:hidden relative w-12 h-12 flex items-center justify-center"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Toggle menu"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-400 rounded-full opacity-20 blur-md" />
-            <FontAwesomeIcon icon={faBarsStaggered} className="text-white text-xl relative z-10" />
-          </motion.button>
-        </div>
-
-        {/* Animated bottom glow */}
         <motion.div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent"
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-            scaleX: [0.8, 1, 0.8],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-lg opacity-0 group-hover:opacity-20 blur-xl transition-opacity"
+          initial={{ scale: 0.8 }}
+          whileHover={{ scale: 1 }}
         />
-      </motion.nav>
+      </motion.div>
+
+      {/* Desktop Nav */}
+      <div className="hidden md:flex items-center gap-2 bg-emerald-900/40 rounded-full px-2 py-2 border border-emerald-700/40">
+        {navItems.map((item: NavItem, index: number) => (
+          <motion.a
+            key={index}
+            href={item.href}
+            onClick={(e) => handleScroll(e, item.href)}
+            className="relative px-6 py-2.5 text-sm font-semibold transition-colors duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {activeSection === item.label && (
+              <motion.div
+                layoutId="activeSection"
+                className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+
+            <span
+              className={`relative z-10 ${
+                activeSection === item.label
+                  ? "text-white"
+                  : "text-emerald-200 hover:text-white"
+              }`}
+            >
+              {item.label}
+            </span>
+
+            <motion.div
+              className="absolute inset-0 bg-emerald-400/20 rounded-full opacity-0 blur-md"
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
+        ))}
+      </div>
+
+      {/* Mobile Button */}
+      <motion.button
+        onClick={toggle}
+        className="md:hidden relative w-12 h-12 flex items-center justify-center"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        aria-label="Toggle menu"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-400 rounded-full opacity-20 blur-md" />
+        <FontAwesomeIcon
+          icon={faBarsStaggered}
+          className="text-white text-xl relative z-10"
+        />
+      </motion.button>
+    </div>
+
+    {/* Animated bottom glow */}
+    <motion.div
+      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent"
+      animate={{
+        opacity: [0.3, 0.6, 0.3],
+        scaleX: [0.8, 1, 0.8],
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+    </motion.nav>
+
 
       {/* Ultra-Modern Mobile Menu */}
       <AnimatePresence>
